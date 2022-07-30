@@ -32,5 +32,6 @@
                 "SMS": "Kaynite\\Providers\\Facades\\SMS"
             }
         }
-    }
+    },
+    "minimum-stability": "stable"
 }
