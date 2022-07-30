@@ -26,10 +26,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Kaynite\\Providers\\SMSServiceProvider"
+                "Kaynite\\SMS\\Providers\\SMSServiceProvider"
             ],
             "aliases": {
-                "SMS": "Kaynite\\Providers\\Facades\\SMS"
+                "SMS": "Kaynite\\SMS\\Providers\\Facades\\SMS"
             }
         }
     },
