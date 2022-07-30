@@ -10,6 +10,27 @@
         }
     ],
     "require-dev": {
-        "orchestra/testbench": "^7.6"
+        "orchestra/testbench": "^7.6",
+        "guzzlehttp/guzzle": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kaynite\\SMS\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kaynite\\SMS\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kaynite\\Providers\\SMSServiceProvider"
+            ],
+            "aliases": {
+                "SMS": "Kaynite\\Providers\\Facades\\SMS"
+            }
+        }
     }
 }
