@@ -3,12 +3,14 @@
 namespace Kaynite\SMS\Drivers;
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Kaynite\SMS\Interfaces\SMSInterface;
+use Kaynite\SMS\Traits\Logger;
 
 class SMSMisr implements SMSInterface
 {
+    use Logger;
+
     /**
      * The number that will receive the message.
      *
@@ -39,14 +41,14 @@ class SMSMisr implements SMSInterface
 
     /**
      * SMSMisr Service Configurations.
-     * 
+     *
      * @var object
      */
     protected $config;
 
     /**
      * The class constructor.
-     * 
+     *
      * @param array $config
      */
     public function __construct(array $config)
@@ -61,7 +63,7 @@ class SMSMisr implements SMSInterface
      *
      * @return self
      */
-    public function to(array|string|int $number): self
+    public function to(array | string | int $number): self
     {
         $this->to = $number;
 
@@ -112,7 +114,7 @@ class SMSMisr implements SMSInterface
 
     /**
      * Send the message.
-     * 
+     *
      * @return bool
      */
     public function send(): bool
@@ -128,7 +130,7 @@ class SMSMisr implements SMSInterface
 
     /**
      * Queue the message.
-     * 
+     *
      * @return void
      */
     public function queue(): void
@@ -137,18 +139,8 @@ class SMSMisr implements SMSInterface
     }
 
     /**
-     * Log the message data.
-     * 
-     * @return void
-     */
-    public function log(): void
-    {
-        Log::info("SMS", $this->query() + ['provider', class_basename($this)]);
-    }
-
-    /**
      * The query string data used in the request.
-     * 
+     *
      * @return array
      */
     public function query(): array
