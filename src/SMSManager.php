@@ -4,6 +4,7 @@ namespace Kaynite\SMS;
 
 use Illuminate\Support\Manager;
 use Kaynite\SMS\Drivers\Log;
+use Kaynite\SMS\Drivers\SMSEgypt;
 use Kaynite\SMS\Drivers\SMSMisr;
 
 class SMSManager extends Manager
@@ -15,12 +16,12 @@ class SMSManager extends Manager
 
     public function createSmsmisrDriver()
     {
-        return new SMSMisr(config('sms.smsmisr'));
+        return new SMSMisr(config('sms.smsmisr', []));
     }
 
     public function createSmsegyptDriver()
     {
-        return new SMSMisr(config('sms.smsegypt'));
+        return new SMSEgypt(config('sms.smsegypt', []));
     }
 
     public function createLogDriver()
