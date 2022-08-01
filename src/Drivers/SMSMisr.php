@@ -123,7 +123,13 @@ class SMSMisr implements SMSInterface
             'query' => $this->query(),
         ])->post("https://smsmisr.com/api/webapi/");
 
-        dd($res->body(), $res->status());
+        if ($res->failed()) {
+            return false;
+        }
+
+        if($res->object()->code != 1901) {
+            return false;
+        }
 
         return true;
     }
@@ -159,5 +165,28 @@ class SMSMisr implements SMSInterface
         }
 
         return $data;
+    }
+
+    protected function codes($value)
+    {
+        return match($value) {
+            1901 => "Success, Message Submitted Successfully",
+            1902 => "Invalid URL, This means that one of the parameters was not provided",
+            9999 => "Please Wait For A While, This means You Sent Alot Of API Request At The Same Time",
+            1903 => "Invalid value in username or password field",
+            1904 => "Invalid value in 'sender' field",
+            1905 => "Invalid value in 'mobile' field",
+            1906 => "Insufficient Credit selected.",
+            1907 => "Server under updating",
+            1908 => "Invalid Date & Time format in 'DelayUntil=' parameter",
+            1909 => "Error In Message",
+            8001 => "Mobile is null",
+            8002 => "Message is null",
+            8003 => "Language is null",
+            8004 => "Sender is null",
+            8005 => "Username is null",
+            8006 => "Password is null",
+            default => "Unknown error"
+        };
     }
 }
