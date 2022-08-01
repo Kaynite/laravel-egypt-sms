@@ -1,15 +1,21 @@
 <?php
 
 return [
-    'default' => env('SMS_PROVIDER', 'log'),
+    'default'  => env('SMS_PROVIDER', 'log'),
 
-    'smsmisr' => [
+    'smsmisr'  => [
         'username' => env('SMSMISR_USERNAME'),
         'passowrd' => env('SMSMISR_PASSWORD'),
         'sender'   => env('SMSMISR_SENDER'),
     ],
 
-    'log'     => [
+    'smsegypt' => [
+        'username'   => env('SMSEGYPT_USERNAME'),
+        'passowrd'   => env('SMSEGYPT_PASSWORD'),
+        'sendername' => env('SMSEGYPT_SENDER'),
+    ],
+
+    'log'      => [
         'channel' => '',
     ],
 ];

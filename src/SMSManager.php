@@ -18,6 +18,11 @@ class SMSManager extends Manager
         return new SMSMisr(config('sms.smsmisr'));
     }
 
+    public function createSmsegyptDriver()
+    {
+        return new SMSMisr(config('sms.smsegypt'));
+    }
+
     public function createLogDriver()
     {
         return new Log(config('sms.log'));
