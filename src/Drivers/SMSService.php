@@ -64,7 +64,9 @@ abstract class SMSService implements SMSInterface
      */
     public function to(array|string|int $number): self
     {
-        $this->to = $number;
+        $number = is_array($number) ? $number : func_get_args();
+
+        $this->to = implode(",", $number);
 
         return $this;
     }
